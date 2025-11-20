@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using project.Models;
+using project.API.Models;
 
-namespace project.Data
+namespace project.API.Data
 {
     public class projectContext : DbContext
     {
@@ -14,7 +14,7 @@ namespace project.Data
         {
         }
 
-        public DbSet<project.Models.Animal> Animal { get; set; } = default!;
-        public DbSet<project.Models.Cares> Cares { get; set; } = default!;
+        public DbSet<Animal> Animal { get; set; } = default!;
+        public DbSet<Cares> Cares { get; set; } = default!;
     }
 }

@@ -5,54 +5,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using project.Data;
-using project.Models;
+using project.API.Data;
+using project.API.Models;
 
-namespace project.Controllers
+namespace project.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CaresController : ControllerBase
+    public class AnimalsController : ControllerBase
     {
         private readonly projectContext _context;
 
-        public CaresController(projectContext context)
+        public AnimalsController(projectContext context)
         {
             _context = context;
         }
 
-        // GET: api/Cares
+        // GET: api/Animals
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cares>>> GetCares()
+        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimal()
         {
-            return await _context.Cares.ToListAsync();
+            return await _context.Animal.ToListAsync();
         }
 
-        // GET: api/Cares/5
+        // GET: api/Animals/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cares>> GetCares(int id)
+        public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
-            var cares = await _context.Cares.FindAsync(id);
+            var animal = await _context.Animal.FindAsync(id);
 
-            if (cares == null)
+            if (animal == null)
             {
                 return NotFound();
             }
 
-            return cares;
+            return animal;
         }
 
-        // PUT: api/Cares/5
+        // PUT: api/Animals/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCares(int id, Cares cares)
+        public async Task<IActionResult> PutAnimal(int id, Animal animal)
         {
-            if (id != cares.Id)
+            if (id != animal.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cares).State = EntityState.Modified;
+            _context.Entry(animal).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace project.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CaresExists(id))
+                if (!AnimalExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace project.Controllers
             return NoContent();
         }
 
-        // POST: api/Cares
+        // POST: api/Animals
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Cares>> PostCares(Cares cares)
+        public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
         {
-            _context.Cares.Add(cares);
+            _context.Animal.Add(animal);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCares", new { id = cares.Id }, cares);
+            return CreatedAtAction("GetAnimal", new { id = animal.Id }, animal);
         }
 
-        // DELETE: api/Cares/5
+        // DELETE: api/Animals/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCares(int id)
+        public async Task<IActionResult> DeleteAnimal(int id)
         {
-            var cares = await _context.Cares.FindAsync(id);
-            if (cares == null)
+            var animal = await _context.Animal.FindAsync(id);
+            if (animal == null)
             {
                 return NotFound();
             }
 
-            _context.Cares.Remove(cares);
+            _context.Animal.Remove(animal);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CaresExists(int id)
+        private bool AnimalExists(int id)
         {
-            return _context.Cares.Any(e => e.Id == id);
+            return _context.Animal.Any(e => e.Id == id);
         }
     }
 }

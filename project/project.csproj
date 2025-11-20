@@ -1,10 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+	
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <SpaRoot>ZooApp\</SpaRoot>
+    <SpaProxyServerUrl>https://localhost:4200</SpaProxyServerUrl>
+    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <Content Include="API\wwwroot\index.html" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />

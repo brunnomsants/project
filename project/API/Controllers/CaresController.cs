@@ -5,54 +5,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using project.Data;
-using project.Models;
+using project.API.Data;
+using project.API.Models;
 
-namespace project.Controllers
+namespace project.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AnimalsController : ControllerBase
+    public class CaresController : ControllerBase
     {
         private readonly projectContext _context;
 
-        public AnimalsController(projectContext context)
+        public CaresController(projectContext context)
         {
             _context = context;
         }
 
-        // GET: api/Animals
+        // GET: api/Cares
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimal()
+        public async Task<ActionResult<IEnumerable<Cares>>> GetCares()
         {
-            return await _context.Animal.ToListAsync();
+            return await _context.Cares.ToListAsync();
         }
 
-        // GET: api/Animals/5
+        // GET: api/Cares/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Animal>> GetAnimal(int id)
+        public async Task<ActionResult<Cares>> GetCares(int id)
         {
-            var animal = await _context.Animal.FindAsync(id);
+            var cares = await _context.Cares.FindAsync(id);
 
-            if (animal == null)
+            if (cares == null)
             {
                 return NotFound();
             }
 
-            return animal;
+            return cares;
         }
 
-        // PUT: api/Animals/5
+        // PUT: api/Cares/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAnimal(int id, Animal animal)
+        public async Task<IActionResult> PutCares(int id, Cares cares)
         {
-            if (id != animal.Id)
+            if (id != cares.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(animal).State = EntityState.Modified;
+            _context.Entry(cares).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace project.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AnimalExists(id))
+                if (!CaresExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace project.Controllers
             return NoContent();
         }
 
-        // POST: api/Animals
+        // POST: api/Cares
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
+        public async Task<ActionResult<Cares>> PostCares(Cares cares)
         {
-            _context.Animal.Add(animal);
+            _context.Cares.Add(cares);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAnimal", new { id = animal.Id }, animal);
+            return CreatedAtAction("GetCares", new { id = cares.Id }, cares);
         }
 
-        // DELETE: api/Animals/5
+        // DELETE: api/Cares/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAnimal(int id)
+        public async Task<IActionResult> DeleteCares(int id)
         {
-            var animal = await _context.Animal.FindAsync(id);
-            if (animal == null)
+            var cares = await _context.Cares.FindAsync(id);
+            if (cares == null)
             {
                 return NotFound();
             }
 
-            _context.Animal.Remove(animal);
+            _context.Cares.Remove(cares);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AnimalExists(int id)
+        private bool CaresExists(int id)
         {
-            return _context.Animal.Any(e => e.Id == id);
+            return _context.Cares.Any(e => e.Id == id);
         }
     }
 }

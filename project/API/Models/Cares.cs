@@ -1,4 +1,4 @@
-﻿namespace project.Models
+﻿namespace project.API.Models
 {
     public class Cares
     {
