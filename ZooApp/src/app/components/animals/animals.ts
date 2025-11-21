@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AnimalService, Animal } from '../../services/animals/animals';
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,9 +19,7 @@ export class AnimalsComponent implements OnInit {
   selectedAnimal: Animal = this.newAnimal();
   isEditing = false;
   
-  constructor(private animalService: AnimalService) { }
-
-  
+  constructor(private animalService: AnimalService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadAnimals();
@@ -59,8 +57,6 @@ export class AnimalsComponent implements OnInit {
     this.isEditing = true;
   }
 
-
-
   delete(id: number): void {
     if (confirm('Tem certeza que deseja excluir este animal?')) {
       this.animalService.deleteAnimal(id).subscribe({
@@ -74,8 +70,14 @@ export class AnimalsComponent implements OnInit {
     this.selectedAnimal = this.newAnimal();
     this.isEditing = false;
   }
+
   trackById(index: number, item: Animal) {
     return item.id;
+  }
+
+  goToCares(animalId: number) {
+    this.router.navigate(['/cares', animalId]);
+    alert('Navegando para cuidados do animal ' + animalId);
   }
 
   private newAnimal(): Animal {

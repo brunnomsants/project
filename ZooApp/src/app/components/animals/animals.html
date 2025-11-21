@@ -65,7 +65,7 @@
           <td>{{ animal.countryOfOrigin }}</td>
           <td>
             <button (click)="edit(animal)" class="btn btn-sm btn-warning">Editar registro</button>
-            <button (click)="edit(animal)" class="btn btn-sm btn-primary">Editar cuidados</button>
+            <button (click)="goToCares(animal.id)" class="btn btn-sm btn-primary">Editar cuidados</button>
            <button (click)="delete(animal.id)" class="btn btn-sm btn-danger">Excluir registro</button>
          </td>
         </tr>
