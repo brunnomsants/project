@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule], 
   templateUrl: './animals.html',
-  styleUrls: ['../styles/common.css'],
+  styleUrls: ['../../app.css'],
 })
 
 

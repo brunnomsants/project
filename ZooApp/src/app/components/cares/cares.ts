@@ -10,7 +10,7 @@ import { AnimalService } from '../../services/animals/animals';
   selector: 'app-cares',
   imports: [FormsModule, CommonModule],
   templateUrl: './cares.html',
-  styleUrl: '../styles/common.css',
+  styleUrl: '../../app.css',
 })
 export class CaresComponent implements OnInit {
   cares: Care[] = [];
