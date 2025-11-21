@@ -1,0 +1,11 @@
+﻿namespace project.API.Models
+{
+    public class Cares
+    {
+        public int Id { get; set; }
+        public int AnimalId { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public string? Frequency { get; set; }
+    }
+}
