@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using project.API.Data;
 using project.API.Models;
 
-namespace project.API.Controllers
+namespace ZooAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
