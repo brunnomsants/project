@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AnimalsComponent } from './components/animal/animal';
+import { AnimalsComponent } from './components/animals/animals';
 
 @Component({
   selector: 'app-root',

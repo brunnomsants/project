@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AnimalService, Animal } from '../../services/animal';
+import { AnimalService, Animal } from '../../services/animals/animals';
 
 
 
@@ -9,8 +9,8 @@ import { AnimalService, Animal } from '../../services/animal';
   selector: 'app-animals',
   standalone: true,
   imports: [CommonModule, FormsModule], 
-  templateUrl: './animal.html',
-  styleUrls: ['./animal.css']
+  templateUrl: './animals.html',
+  styleUrls: ['./animals.css']
 })
 
 
@@ -58,6 +58,8 @@ export class AnimalsComponent implements OnInit {
     this.selectedAnimal = { ...animal };
     this.isEditing = true;
   }
+
+
 
   delete(id: number): void {
     if (confirm('Tem certeza que deseja excluir este animal?')) {
