@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AnimalService, Animal } from '../../services/animal';
 
+
+
 @Component({
   selector: 'app-animals',
   standalone: true,
@@ -10,12 +12,16 @@ import { AnimalService, Animal } from '../../services/animal';
   templateUrl: './animal.html',
   styleUrls: ['./animal.css']
 })
+
+
 export class AnimalsComponent implements OnInit {
   animals: Animal[] = [];
   selectedAnimal: Animal = this.newAnimal();
   isEditing = false;
-
+  
   constructor(private animalService: AnimalService) { }
+
+  
 
   ngOnInit(): void {
     this.loadAnimals();
@@ -65,6 +71,9 @@ export class AnimalsComponent implements OnInit {
   cancel(): void {
     this.selectedAnimal = this.newAnimal();
     this.isEditing = false;
+  }
+  trackById(index: number, item: Animal) {
+    return item.id;
   }
 
   private newAnimal(): Animal {
