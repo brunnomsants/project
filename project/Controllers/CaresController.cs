@@ -30,17 +30,30 @@ namespace ZooAPI.Controllers
 
         // GET: api/Cares/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cares>> GetCares(int id)
-        {
-            var cares = await _context.Cares.FindAsync(id);
+        public async Task<ActionResult<Cares>> GetCares(int id) { 
+            var cares = await _context.Cares.FindAsync(id); 
+            if (cares == null) { 
+                return NotFound(); 
+            } 
+            return cares; 
+        }
 
-            if (cares == null)
+        // GET: api/Cares/ByAnimal/5
+        [HttpGet("ByAnimal/{animalId}")]
+        public async Task<ActionResult<IEnumerable<Cares>>> GetCaresByAnimal(int animalId)
+        {
+            var cares = await _context.Cares
+                                      .Where(c => c.AnimalId == animalId)
+                                      .ToListAsync();
+
+            if (cares == null || cares.Count == 0)
             {
                 return NotFound();
             }
 
             return cares;
         }
+
 
         // PUT: api/Cares/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
