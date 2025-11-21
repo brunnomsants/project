@@ -5,7 +5,7 @@ import { API_URL } from "../../app.config";
 
 export interface Care {
   id: number;
-  animalId: string | null;
+  animalId: number | null;
   name: string | null;
   description: string | null;
   frequency: string | null;
@@ -21,8 +21,8 @@ export class CaresService {
     return this.http.get<Care[]>(this.apiUrl);
   }
 
-  getCare(id: number): Observable<Care> {
-    return this.http.get<Care>(`${this.apiUrl}/${id}`);
+  getCaresByAnimal(animalId: number): Observable<Care[]> {
+    return this.http.get<Care[]>(`${this.apiUrl}/ByAnimal/${animalId}`);
   }
   createCare(care: Care): Observable<Care> {
     return this.http.post<Care>(this.apiUrl, care);

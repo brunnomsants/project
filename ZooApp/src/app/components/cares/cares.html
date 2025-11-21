@@ -1,1 +1,63 @@
-<p>cares works!</p>
+<div class="container">
+  <h1>Cuidados do Animal {{ animalName }}<br>ID: {{ animalId }}</h1>
+
+  <!-- Formulário de Cuidados -->
+  <div class="card">
+    <h2>{{ isEditing ? 'Editar' : 'Adicionar' }} Cuidado</h2>
+    <form (ngSubmit)="save()">
+      <div class="form-group">
+        <label>Nome do Cuidado:</label>
+        <input type="text" [(ngModel)]="selectedCare.name" name="name" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Descrição:</label>
+        <textarea [(ngModel)]="selectedCare.description" name="description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Frequência:</label>
+        <input type="text" [(ngModel)]="selectedCare.frequency" name="frequency" class="form-control">
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">{{ isEditing ? 'Atualizar' : 'Salvar' }}</button>
+        <button type="button" (click)="cancel()" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Lista de Cuidados -->
+  <div class="card">
+    <h2>Lista de Cuidados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Frequência</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let care of cares; trackBy: trackById">
+          <td>{{ care.name }}</td>
+          <td>{{ care.description }}</td>
+          <td>{{ care.frequency }}</td>
+          <td>
+            <button (click)="edit(care)" class="btn btn-sm btn-warning">Editar</button>
+            <button (click)="delete(care.id)" class="btn btn-sm btn-danger">Excluir</button>
+          </td>
+        </tr>
+        <tr *ngIf="cares.length === 0">
+          <td colspan="4" style="text-align: center;">Nenhum cuidado cadastrado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Botão para voltar para animais -->
+  <div class="button-group" style="margin-top: 1rem;">
+    <button type="button" class="btn btn-secondary" (click)="goToAnimals()">Voltar para Animais</button>
+  </div>
+</div>

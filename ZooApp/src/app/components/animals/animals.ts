@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule], 
   templateUrl: './animals.html',
-  styleUrls: ['./animals.css']
+  styleUrls: ['../styles/common.css'],
 })
 
 
@@ -77,7 +77,6 @@ export class AnimalsComponent implements OnInit {
 
   goToCares(animalId: number) {
     this.router.navigate(['/cares', animalId]);
-    alert('Navegando para cuidados do animal ' + animalId);
   }
 
   private newAnimal(): Animal {
