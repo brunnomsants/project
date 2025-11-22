@@ -13,7 +13,7 @@
   <li>SQL Server (Banco de Dados)</li>
 </ul>
 
-h2>Como rodar o projeto</h2>
+<h2>Como rodar o projeto</h2>
 <ol>
   <li>Clone o repositório: <code>git clone &lt;URL do repositório&gt;</code></li>
     <li>Navegue até o diretório do projeto: <code>cd ZooApp</code></li>
