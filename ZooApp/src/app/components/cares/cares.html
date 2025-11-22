@@ -1,7 +1,6 @@
 <div class="container">
   <h1>Cuidados do Animal {{ animalName }}<br>ID: {{ animalId }}</h1>
 
-  <!-- Formulário de Cuidados -->
   <div class="card">
     <h2>{{ isEditing ? 'Editar' : 'Adicionar' }} Cuidado</h2>
     <form (ngSubmit)="save()">
@@ -27,7 +26,6 @@
     </form>
   </div>
 
-  <!-- Lista de Cuidados -->
   <div class="card">
     <h2>Lista de Cuidados</h2>
     <table>
@@ -56,7 +54,6 @@
     </table>
   </div>
 
-  <!-- Botão para voltar para animais -->
   <div class="button-group" style="margin-top: 1rem;">
     <button type="button" class="btn btn-secondary" (click)="goToAnimals()">Voltar para Animais</button>
   </div>
