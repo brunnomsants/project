@@ -22,5 +22,4 @@
     <li>Abra o navegador e acesse: <code>http://localhost:4200</code></li>
     <li>Para o backend ASP.NET Core, navegue até o diretório do backend e execute: <code>dotnet run</code></li>
     <li>Certifique-se de que o banco de dados SQL Server esteja configurado corretamente e acessível.</li>
-    <li>Utilize o comando <code>dotnet-ef update-database</code> para criar o db.</li>
 </ol>
