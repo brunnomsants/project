@@ -42,37 +42,53 @@
     </form>
   </div>
 
-  <!-- Lista de Animais -->
   <div class="card">
-    <h2>Lista de Animais</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Espécie</th>
-          <th>Habitat</th>
-          <th>Data Nasc.</th>
-          <th>País</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let animal of animals; trackBy: trackById">
-          <td>{{ animal.name }}</td>
-          <td>{{ animal.species }}</td>
-          <td>{{ animal.habitat }}</td>
-          <td>{{ animal.birthday | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ animal.countryOfOrigin }}</td>
-          <td>
-            <button (click)="edit(animal)" class="btn btn-sm btn-warning">Editar registro</button>
-            <button (click)="goToCares(animal.id)" class="btn btn-sm btn-primary">Editar cuidados</button>
-           <button (click)="delete(animal.id)" class="btn btn-sm btn-danger">Excluir registro</button>
-         </td>
-        </tr>
-        <tr *ngIf="animals.length === 0">
-          <td colspan="6" style="text-align: center;">Nenhum animal cadastrado</td>
-        </tr>
-      </tbody>
-    </table>
+  <h2>Lista de Animais</h2>
+
+  <!-- Barra de Busca -->
+  <div class="search-box">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      placeholder="Pesquisar por... (nome, espécie, habitat ou país)"
+      class="form-control"
+    >
   </div>
+  <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Espécie</th>
+        <th>Habitat</th>
+        <th>Data Nasc.</th>
+        <th>País</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let animal of filteredAnimals; trackBy: trackById">
+        <td>{{ animal.name }}</td>
+        <td>{{ animal.species }}</td>
+        <td>{{ animal.habitat }}</td>
+        <td>{{ animal.birthday | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ animal.countryOfOrigin }}</td>
+        <td>
+          <button (click)="edit(animal)" class="btn btn-sm btn-warning">Editar registro</button>
+          <button (click)="goToCares(animal.id)" class="btn btn-sm btn-primary">Editar cuidados</button>
+          <button (click)="delete(animal.id)" class="btn btn-sm btn-danger">Excluir registro</button>
+        </td>
+      </tr>
+
+      <tr *ngIf="filteredAnimals.length === 0">
+        <td colspan="6" style="text-align:center">Nenhum animal encontrado</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
 </div>

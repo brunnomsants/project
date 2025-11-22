@@ -64,6 +64,15 @@ namespace ZooAPI.Controllers
         [HttpGet("ByAnimal/{animalId}")]
         public async Task<ActionResult<IEnumerable<CareDTO>>> GetCaresByAnimal(int animalId)
         {
+            // 1. Verificar se o animal existe na tabela Animals
+            var animalExists = await _context.Animal
+                .AsNoTracking()
+                .AnyAsync(animal => animal.Id == animalId);
+
+            if (!animalExists)
+                return NotFound(new { message = $"Animal com ID {animalId} não existe." });
+
+            // 2. Buscar os cuidados desse animal
             var cares = await _context.Cares
                 .AsNoTracking()
                 .Where(c => c.AnimalId == animalId)
@@ -77,11 +86,10 @@ namespace ZooAPI.Controllers
                 })
                 .ToListAsync();
 
-            if (cares.Count == 0)
-                return NotFound();
-
+            // 3. Se não houver cuidados, retorne lista vazia (melhor prática)
             return Ok(cares);
         }
+
 
         // POST: api/Cares
         [HttpPost]

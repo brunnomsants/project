@@ -79,6 +79,17 @@ export class AnimalsComponent implements OnInit {
     this.router.navigate(['/cares', animalId]);
   }
 
+  searchTerm: string = '';
+
+  get filteredAnimals(): Animal[] {
+    return this.animals.filter(animal => 
+      animal.name?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      animal.species?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      animal.habitat?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      animal.countryOfOrigin?.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
   private newAnimal(): Animal {
     return {
       id: 0,

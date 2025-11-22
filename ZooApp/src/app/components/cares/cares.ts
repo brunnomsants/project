@@ -32,20 +32,34 @@ export class CaresComponent implements OnInit {
           next: (animal) => {
             this.animalName = animal.name || '';  
           },
-          error: (error) => console.error('Erro ao carregar animal', error)
+          error: (error) => {console.error('Erro ao carregar animal', error);
+            this.router.navigate(['/not-found'], {
+              state: { message: "Animal não encontrado." }
+            });
+          }
+            
         });
       }
     })
   };
   
-  loadCares(): void {
+ loadCares(): void {
     if (this.animalId !== null) {
       this.caresService.getCaresByAnimal(this.animalId).subscribe({
         next: (data) => this.cares = data,
-        error: (err) => console.error(err)
+        error: (err) => {
+          console.error(err);
+          if (err.status === 404) {    
+            this.router.navigate(['/not-found'], {
+              state: { message: "Animal não encontrado." }
+            });
+          }
+        }
       });
     }
   }
+
+
 
   save(): void {
     if (this.animalId === null) return;

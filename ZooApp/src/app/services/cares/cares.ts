@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs'; 
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs'; 
 import { API_URL } from "../../app.config";
 
 export interface Care {
@@ -22,8 +22,13 @@ export class CaresService {
   }
 
   getCaresByAnimal(animalId: number): Observable<Care[]> {
-    return this.http.get<Care[]>(`${this.apiUrl}/ByAnimal/${animalId}`);
+    return this.http.get<Care[]>(`${this.apiUrl}/Cares/ByAnimal/${animalId}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
+
   createCare(care: Care): Observable<Care> {
     return this.http.post<Care>(this.apiUrl, care);
   }
@@ -33,4 +38,5 @@ export class CaresService {
   deleteCare(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  
 }
