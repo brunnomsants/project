@@ -22,4 +22,5 @@
   <li>Certifique-se de que o banco de dados SQL Server esteja configurado corretamente e acessível.</li>
   <li>Rode <code>dotnet ef database update</code> caso seja necessário</li>
   <li>Por fim rode a api com: <code>dotnet run</code></li>
+  <li>Ela rodará por padrão na porta <code>7284</code></li>
 </ol>
