@@ -15,13 +15,11 @@
 
 <h2>Como rodar o projeto</h2>
 <ol>
-  <li>Clone o repositório: <code>git clone &lt;URL do repositório&gt;</code></li>
-    <li>Navegue até o diretório do projeto: <code>ZooApp/</code></li>
-    <li>Instale as dependências do Angular (caso ainda não tenha): <code>npm install</code></li>
-    <li>Inicie o servidor de desenvolvimento Angular: <code>npm start</code></li>
-    <li>Abra o navegador e acesse: <code>http://localhost:4200</code></li>
-    <li>Para o backend ASP.NET Core, navegue até o diretório do backend: <code>ZooAPI/</code></li>
-    <li>Certifique-se de que o banco de dados SQL Server esteja configurado corretamente e acessível.</li>
-    <li>Rode <code>dotnet ef database update</code> caso seja necessário</li>
-    <li>Por fim rode a api com: <code>dotnet run</code></li>
+  <li>Navegue até o diretório do projeto: <code>ZooApp/</code></li>
+  <li>Inicie o servidor de desenvolvimento Angular: <code>npm start</code></li>
+  <li>Abra o navegador e acesse: <code>http://localhost:4200</code></li>
+  <li>Para o backend ASP.NET Core, navegue até o diretório do backend: <code>ZooAPI/</code></li>
+  <li>Certifique-se de que o banco de dados SQL Server esteja configurado corretamente e acessível.</li>
+  <li>Rode <code>dotnet ef database update</code> caso seja necessário</li>
+  <li>Por fim rode a api com: <code>dotnet run</code></li>
 </ol>
