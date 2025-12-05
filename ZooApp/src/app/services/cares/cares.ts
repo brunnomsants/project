@@ -22,7 +22,7 @@ export class CaresService {
   }
 
   getCaresByAnimal(animalId: number): Observable<Care[]> {
-    return this.http.get<Care[]>(`${this.apiUrl}/Cares/ByAnimal/${animalId}`).pipe(
+    return this.http.get<Care[]>(`${this.apiUrl}/ByAnimal/${animalId}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
